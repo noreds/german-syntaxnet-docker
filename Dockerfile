@@ -74,10 +74,10 @@ RUN cd $SYNTAXNETDIR/syntaxnet/tensorflow \
 
 # Build the codez.
 WORKDIR $SYNTAXNETDIR/syntaxnet
-COPY dragnn $SYNTAXNETDIR/syntaxnet/dragnn
-COPY syntaxnet $SYNTAXNETDIR/syntaxnet/syntaxnet
-COPY third_party $SYNTAXNETDIR/syntaxnet/third_party
-COPY util/utf8 $SYNTAXNETDIR/syntaxnet/util/utf8
+COPY syntaxnet/dragnn $SYNTAXNETDIR/syntaxnet/dragnn
+COPY syntaxnet/syntaxnet $SYNTAXNETDIR/syntaxnet/syntaxnet
+COPY syntaxnet/third_party $SYNTAXNETDIR/syntaxnet/third_party
+COPY syntaxnet/util/utf8 $SYNTAXNETDIR/syntaxnet/util/utf8
 RUN bazel build -c opt //dragnn/python:all //dragnn/tools:all
 RUN wget -q -O - http://download.tensorflow.org/models/parsey_universal/German.zip | tartar xvzf -
 
