@@ -1,0 +1,15 @@
+sudo: required
+
+language: python
+
+services:
+  - docker
+
+before_install:
+  - docker build -t marcobeyer/german-syntaxnet-docker .
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push marcobeyer/german-syntaxnet-docker;
+    fi
