@@ -60,9 +60,9 @@ RUN wget --quiet https://github.com/bazelbuild/bazel/releases/download/0.4.3/baz
     && ./bazel-0.4.3-installer-linux-x86_64.sh \
     && rm ./bazel-0.4.3-installer-linux-x86_64.sh
 
-COPY WORKSPACE $SYNTAXNETDIR/syntaxnet/WORKSPACE
-COPY tools/bazel.rc $SYNTAXNETDIR/syntaxnet/tools/bazel.rc
-COPY tensorflow $SYNTAXNETDIR/syntaxnet/tensorflow
+COPY models/syntaxnet/WORKSPACE $SYNTAXNETDIR/syntaxnet/WORKSPACE
+COPY models/syntaxnet/tools/bazel.rc $SYNTAXNETDIR/syntaxnet/tools/bazel.rc
+COPY models/syntaxnet/tensorflow $SYNTAXNETDIR/syntaxnet/tensorflow
 
 # Compile common TensorFlow targets, which don't depend on DRAGNN / SyntaxNet
 # source. This makes it more convenient to re-compile DRAGNN / SyntaxNet for
@@ -74,10 +74,10 @@ RUN cd $SYNTAXNETDIR/syntaxnet/tensorflow \
 
 # Build the codez.
 WORKDIR $SYNTAXNETDIR/syntaxnet
-COPY syntaxnet/dragnn $SYNTAXNETDIR/syntaxnet/dragnn
-COPY syntaxnet/syntaxnet $SYNTAXNETDIR/syntaxnet/syntaxnet
-COPY syntaxnet/third_party $SYNTAXNETDIR/syntaxnet/third_party
-COPY syntaxnet/util/utf8 $SYNTAXNETDIR/syntaxnet/util/utf8
+COPY models/syntaxnet/dragnn $SYNTAXNETDIR/syntaxnet/dragnn
+COPY models/syntaxnet/syntaxnet $SYNTAXNETDIR/syntaxnet/syntaxnet
+COPY models/syntaxnet/third_party $SYNTAXNETDIR/syntaxnet/third_party
+COPY models/syntaxnet/util/utf8 $SYNTAXNETDIR/syntaxnet/util/utf8
 RUN bazel build -c opt //dragnn/python:all //dragnn/tools:all
 RUN wget -q -O - http://download.tensorflow.org/models/parsey_universal/German.zip | tartar xvzf -
 
