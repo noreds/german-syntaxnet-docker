@@ -1,4 +1,4 @@
-
+FROM openjdk:8
 ENV SYNTAXNETDIR=/opt/tensorflow PATH=$PATH:/root/bin
 
 # Install system packages. This doesn't include everything the TensorFlow
