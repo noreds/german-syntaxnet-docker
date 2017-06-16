@@ -1,3 +1,0 @@
-[submodule "syntaxnet-base/models"]
-	path = syntaxnet-base/models
-	url = https://github.com/tensorflow/models.git
