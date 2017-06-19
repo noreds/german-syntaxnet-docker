@@ -1,12 +1,15 @@
 sudo: required
 
-language: python
+language: ruby
 
 services:
   - docker
 
 before_install:
   - docker build -t marcobeyer/german-syntaxnet-docker .
+
+script:
+  - echo 'container built'
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
